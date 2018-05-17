@@ -1,0 +1,231 @@
+/*
+------------------------------------------------------------------------------------------
+	Reset section. v1.0 | 20080212
+------------------------------------------------------------------------------------------
+*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, menu, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td	{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol, ul, menu {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/*
+	remember to define focus styles!
+*/
+:focus {
+	outline: 0;
+}
+
+/*
+	remember to highlight inserts somehow!
+*/
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}html, body {
+    height: 100%;
+}
+
+body    {
+    font: 13px verdana;
+    color: #000;
+    background: #000;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* IE/Edge */
+    user-select: none;
+}
+
+.screen-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*
+ *  Footer
+ */
+
+footer {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+}
+
+.svg-icon path {
+    fill: #808080;
+}
+
+.svg-icon path:hover {
+    fill: #ccc;
+}
+
+.social-link:hover .svg-icon path {
+    fill: #ccc;
+}
+
+.footer {
+    height: 144px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -144px;
+}body {
+  font: 13px verdana;
+  color: #eee;
+  background: #606060;
+  height: 100%;
+  position: relative;
+  overflow-y: scroll; }
+
+.main {
+  background: #404040;
+  max-width: 930px;
+  min-width: 400px;
+  min-height: 100vh;
+  margin: 0 auto 0 auto;
+  padding: 64px 16px 144px; }
+header {
+  background: #c0c0c0;
+  box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 64px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1; }
+
+.header-area {
+  background: #a8a8a8;
+  min-width: 400px;
+  max-width: 930px;
+  height: 100%;
+  margin: auto;
+  padding: 0px 16px;
+  display: flex;
+  align-items: center; }
+  .header-area .text-wrapper {
+    background: #fff;
+    border: 2px solid #888;
+    border-radius: 4px;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 0px 0 8px; }
+  .header-area .text-field {
+    font: 16px verdana, helvetica;
+    color: #000;
+    background: #fff;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 28px;
+    margin-right: 8px; }
+  .header-area .btn-search {
+    width: 48px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .header-area .btn-search svg {
+      width: 32px;
+      height: 32px; }
+      .header-area .btn-search svg path {
+        fill: #a0a0a0; }
+.user-list__item {
+  border-bottom: 1px solid #808080;
+  width: 100%;
+  height: 112px;
+  cursor: pointer; }
+  .user-list__item:hover .thumbnail {
+    background: #c93;
+    transform: scale(1.25, 1.25); }
+  .user-list__item:hover .name {
+    color: #fff; }
+  .user-list__item:last-child {
+    border: none; }
+
+.thumbnail {
+  background: #c0c0c0;
+  box-shadow: 0 3px 4px 2px rgba(0, 0, 0, 0.3);
+  width: 72px;
+  height: 72px;
+  margin: 20px 8px 0 0;
+  transform: scale(1, 1);
+  transition: all 0.1s;
+  float: left; }
+  .thumbnail img {
+    background: #808080;
+    border: 1px solid #000;
+    width: 64px;
+    height: 64px;
+    margin: 4px; }
+
+.user-info {
+  height: 80px;
+  margin: 16px 0 0 8px;
+  float: left; }
+  .user-info .name {
+    font: 28px Verdana, Georgia;
+    color: #ccc;
+    letter-spacing: 1px;
+    height: 56px;
+    line-height: 56px; }
+  .user-info .headline {
+    color: #9ce;
+    height: 24px; }
+
+/*# sourceMappingURL=build.css.map*/
