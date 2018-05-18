@@ -27,6 +27,10 @@ export default class baseComponent extends React.Component {
         app.componentsByName[componentName].push(this);
     }
 
+    get uid() {
+        return Math.floor((Math.random() * new Date().getTime())).toString(16);
+    }
+
     emit(fn, data) {
         if (this.props[fn] && typeof fn === 'string') {
             this.props[fn](data);

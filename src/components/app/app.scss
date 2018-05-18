@@ -10,7 +10,7 @@ body {
 
 .main {
     background: $bgMain;
-    max-width: 930px;
+    max-width: $maxWidth;
     min-width: $minWidth;
     min-height: 100vh;
     margin: 0 auto 0 auto;

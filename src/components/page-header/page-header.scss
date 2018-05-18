@@ -13,7 +13,7 @@ header {
 .header-area {
     background: #a8a8a8;
     min-width: $minWidth;
-    max-width: 930px;
+    max-width: $maxWidth;
     height: 100%;
     margin: auto;
     padding: 0px 16px;
