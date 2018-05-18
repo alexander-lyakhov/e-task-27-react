@@ -5,32 +5,3 @@
     flex-wrap: wrap;
     justify-content: flex-start;
 }
-
-.movie-placeholder {
-    background: #808080;
-    text-align: center;
-    width: 25%;
-}
-
-.movie-placeholder:nth-child(odd) {
-    background: #666;
-}
-
-.movie-card {
-    background: #ccc;
-    width: 256px;
-    height: 320px;
-    margin: 8px auto;
-}
-
-@media screen and (max-width: 1152px) {
-    .movie-placeholder {
-        width: 33.33%;
-    }
-}
-
-@media screen and (max-width: 960px) {
-    .movie-placeholder {
-        width: 50%;
-    }
-}
