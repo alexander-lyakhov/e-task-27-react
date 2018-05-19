@@ -17,10 +17,11 @@ export default class MovieGrid extends baseComponent
             <div className='movies'>
             {
                 data.map((item, index) =>
-                	<MovieCard
-                		image={item.posterUrl}
-                		title={item.title}
-                	/>
+                    <MovieCard  key={this.uid}
+                        image={item.posterUrl}
+                        title={item.title}
+                        stars={item.stars}
+                    />
                 )
             }
             </div>
