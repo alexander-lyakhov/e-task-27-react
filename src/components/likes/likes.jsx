@@ -19,11 +19,13 @@ export default class Likes extends baseComponent
         this.increaseLikes = this.increaseLikes.bind(this);
     }
 
-    decreaseLikes() {
+    decreaseLikes(e) {
+        e.preventDefault();
         this.setState({value: this.state.value - 1});
     }
 
-    increaseLikes() {
+    increaseLikes(e) {
+        e.preventDefault();
         this.setState({value: this.state.value + 1});
     }
 

@@ -9,20 +9,40 @@ export default class Rating extends baseComponent
 {
     constructor(props) {
         super(props);
+
+        this.state = {
+            value: this.props.stars
+        }
+
+        this.changeRating = this.changeRating.bind(this);
     }
 
-    getStar(index) {
-        return index < this.props.stars ? iconStarSolid:iconStarOutline;
+    getIcon(index) {
+        return index < this.state.value ? iconStarSolid:iconStarOutline;
     }
 
     get stars() {
         var arr = [];
 
         for (let i = 0; i < 5; i++) {
-            arr.push(<li className="rating-item" key={this.uid}><img src={this.getStar(i)} width="24" height="24" /></li>);
+            arr.push(
+                <li className="rating-item" key={this.uid} data-current-value={i + 1} onClick={this.changeRating}>
+                    <img src={this.getIcon(i)} width="24" height="24" />
+                </li>
+            );
         }
 
         return arr;
+    }
+
+    changeRating(e) {
+        this.setState({
+            value: e.currentTarget.getAttribute('data-current-value')
+        });
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state.value !== nextState.value;
     }
 
     render() {
