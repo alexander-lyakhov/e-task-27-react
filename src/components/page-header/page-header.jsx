@@ -2,6 +2,7 @@ import React from 'react';
 import baseComponent from '../base-component.jsx';
 
 import './page-header.scss';
+import iconSearch from './img/magnify.svg';
 
 export default class PageHeader extends baseComponent
 {
@@ -28,6 +29,7 @@ export default class PageHeader extends baseComponent
                 <div className="header-area">
                     <div className="text-wrapper">
                         <input type="text"  ref="txtSearch" className="text-field" onKeyUp={this.keyUpHandler} />
+                        <a href="#" className="btn-search"><img src={iconSearch} width="24" height="24" /></a>
                     </div>
                 </div>
             </header>
