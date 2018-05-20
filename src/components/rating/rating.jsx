@@ -9,16 +9,11 @@ export default class Rating extends baseComponent
 {
     constructor(props) {
         super(props);
-
-        this.state = {
-            value: this.props.stars
-        }
-
         this.changeRating = this.changeRating.bind(this);
     }
 
     getIcon(index) {
-        return index < this.state.value ? iconStarSolid:iconStarOutline;
+        return index < this.props.value ? iconStarSolid:iconStarOutline;
     }
 
     get stars() {
@@ -36,13 +31,11 @@ export default class Rating extends baseComponent
     }
 
     changeRating(e) {
-        this.setState({
-            value: e.currentTarget.getAttribute('data-current-value')
-        });
+        this.emit('onChange', e.currentTarget.getAttribute('data-current-value'));
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return this.state.value !== nextState.value;
+        return this.props.value !== nextProps.value;
     }
 
     render() {

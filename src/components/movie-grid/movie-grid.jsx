@@ -4,7 +4,7 @@ import baseComponent from '../base-component.jsx';
 import './movie-grid.scss';
 import data from './data.js';
 
-import MovieCard from '../movie-card/movie-card.jsx';
+import Movie from '../movie/movie.jsx';
 
 export default class MovieGrid extends baseComponent
 {
@@ -17,11 +17,7 @@ export default class MovieGrid extends baseComponent
             <div className='movies'>
             {
                 data.map((item, index) =>
-                    <MovieCard  key={this.uid}
-                        image={item.posterUrl}
-                        title={item.title}
-                        stars={item.stars}
-                    />
+                    <Movie key={this.uid} details={item} />
                 )
             }
             </div>
