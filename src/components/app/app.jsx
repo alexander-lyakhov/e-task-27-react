@@ -13,25 +13,37 @@ export default class App extends baseComponent
         super(props);
 
         this.state = {
-            searchQuery: ''
+            searchQuery: '',
+            sortQuery: 'nosort'
         };
 
         this.search = this.search.bind(this);
+        this.sort = this.sort.bind(this);
     }
 
     search(query) {
-        this.setState({searchQuery: query.trim()})
+        if (this.state.searchQuery !== query.trim()) {
+	        this.setState({searchQuery: query.trim()})
+    	}
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return this.state.searchQuery !== nextState.searchQuery;
+    sort(query) {
+    	if (this.state.sortQuery !== query) {
+	    	this.setState({sortQuery: query});
+		}
     }
 
     render() {
         return (
             <div className="main">
-                <PageHeader onSearch={this.search} />
-                <MovieGrid query={this.state.searchQuery} />
+                <PageHeader
+                	onSearch={this.search}
+                	onSort={this.sort}
+                />
+                <MovieGrid
+                	searchQuery={this.state.searchQuery}
+                	sortQuery={this.state.sortQuery}
+                />
             </div>
         )
     }

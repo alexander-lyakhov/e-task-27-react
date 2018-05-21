@@ -12,6 +12,7 @@ export default class ButtonGroup extends baseComponent
 
     clickHandler(e) {
         this.setActiveButton(e.target);
+        this.emit('onChange', e.target.getAttribute('data-action'));
     }
 
     setActiveButton(btn) {
@@ -31,9 +32,9 @@ export default class ButtonGroup extends baseComponent
     render() {
         return (
             <ul className="btn-group noselect" onClick={this.clickHandler} ref="btnGroup">
-                <li className="btn-group__item active">No Sorting</li>
-                <li className="btn-group__item">By Likes</li>
-                <li className="btn-group__item">By Stars</li>
+                <li className="btn-group__item" data-action="nosort">No Sorting</li>
+                <li className="btn-group__item" data-action="likes">By Likes</li>
+                <li className="btn-group__item" data-action="stars">By Stars</li>
             </ul>
         )
     }

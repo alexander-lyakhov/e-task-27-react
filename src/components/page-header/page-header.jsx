@@ -10,7 +10,9 @@ export default class PageHeader extends baseComponent
 {
     constructor(props) {
         super(props);
+
         this.triggerSearch = this.triggerSearch.bind(this);
+        this.triggerSort = this.triggerSort.bind(this);
     }
 
     triggerSearch(e) {
@@ -20,6 +22,10 @@ export default class PageHeader extends baseComponent
         }
 
         this.emit('onSearch', this.refs.txtSearch.value);
+    }
+
+    triggerSort(val) {
+    	this.emit('onSort', val);
     }
 
     shouldComponentUpdate() {
@@ -36,7 +42,7 @@ export default class PageHeader extends baseComponent
                             <img src={iconSearch} width="24" height="24" />
                         </a>
                     </div>
-                    <ButtonGroup />
+                    <ButtonGroup onChange={this.triggerSort} />
                 </div>
             </header>
         )
