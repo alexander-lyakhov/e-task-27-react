@@ -13,12 +13,17 @@ export default class MovieGrid extends baseComponent
     }
 
     render() {
+
+        let {query} = this.props;
+
         return (
             <div className='movies'>
             {
-                data.map((item, index) =>
-                    <Movie key={this.uid} details={item} />
-                )
+                data.map((item, index) => {
+                    if (item.title.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+                        return <Movie key={this.uid} details={item} />
+                    }
+                })
             }
             </div>
         )

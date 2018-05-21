@@ -11,13 +11,27 @@ export default class App extends baseComponent
 {
     constructor(props) {
         super(props);
+
+        this.state = {
+            searchQuery: ''
+        };
+
+        this.search = this.search.bind(this);
+    }
+
+    search(query) {
+        this.setState({searchQuery: query.trim()})
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state.searchQuery !== nextState.searchQuery;
     }
 
     render() {
         return (
             <div className="main">
                 <PageHeader onSearch={this.search} />
-                <MovieGrid />
+                <MovieGrid query={this.state.searchQuery} />
             </div>
         )
     }

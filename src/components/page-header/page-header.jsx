@@ -4,23 +4,26 @@ import baseComponent from '../base-component.jsx';
 import './page-header.scss';
 import iconSearch from './img/magnify.svg';
 
+import ButtonGroup from '../button-group/button-group.jsx';
+
 export default class PageHeader extends baseComponent
 {
     constructor(props) {
         super(props);
-        this.keyUpHandler = this.keyUpHandler.bind(this);
+        this.triggerSearch = this.triggerSearch.bind(this);
     }
 
-    keyUpHandler(e) {
-        this.emit('onSearch', e.target.value);
+    triggerSearch(e) {
+
+        if (e.type === 'keyup' && e.keyCode !== 13) {
+            return;
+        }
+
+        this.emit('onSearch', this.refs.txtSearch.value);
     }
 
     shouldComponentUpdate() {
-    	return false;
-    }
-
-    componentDidMount() {
-    	this.refs.txtSearch.focus();
+        return false;
     }
 
     render() {
@@ -28,9 +31,12 @@ export default class PageHeader extends baseComponent
             <header>
                 <div className="header-area">
                     <div className="text-wrapper">
-                        <input type="text"  ref="txtSearch" className="text-field" onKeyUp={this.keyUpHandler} />
-                        <a href="#" className="btn-search"><img src={iconSearch} width="24" height="24" /></a>
+                        <input type="text" autoFocus className="txt-search" ref="txtSearch" onKeyUp={this.triggerSearch} />
+                        <a href="#" className="btn-search" onClick={this.triggerSearch}>
+                            <img src={iconSearch} width="24" height="24" />
+                        </a>
                     </div>
+                    <ButtonGroup />
                 </div>
             </header>
         )

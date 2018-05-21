@@ -31,7 +31,7 @@ header {
         padding: 0 0px 0 8px;
     }
 
-    .text-field {
+    .txt-search {
         font: 16px verdana, helvetica;
         color: #000;
         background: $bgInputText;
@@ -52,6 +52,15 @@ header {
         img {
             width: 32px;
             height: 32px;
+            transition: all 0.2s;
+
+            /*
+            &:hover {
+                width: 32px;
+                height: 32px;
+                transition: all 0.2s;
+            }
+            */
         }
     }
 }
