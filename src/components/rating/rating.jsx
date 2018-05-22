@@ -31,7 +31,7 @@ export default class Rating extends baseComponent
     }
 
     changeRating(e) {
-        this.emit('onChange', e.currentTarget.getAttribute('data-current-value'));
+        this.emit('onChange', +e.currentTarget.getAttribute('data-current-value'));
     }
 
     shouldComponentUpdate(nextProps, nextState) {

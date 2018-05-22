@@ -22,14 +22,16 @@ export default class Movie extends baseComponent
     }
 
     changeRating(val) {
-
         if (this.state.stars !== val) {
             this.setState({stars: val});
+            this.emit('onRatingChange', {id: this.state.id, stars: val});
         }
     }
 
     render() {
-        let {posterUrl: image, title, stars, likes} = this.state;
+        let {posterUrl: image, title, stars, likes} = this.props.details;
+
+        console.log('movie: render');
 
         return (
             <div className='movie-placeholder' key={this.uid}>

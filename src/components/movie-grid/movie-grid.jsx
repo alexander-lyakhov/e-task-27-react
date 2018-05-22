@@ -10,45 +10,67 @@ export default class MovieGrid extends baseComponent
 {
     constructor(props) {
         super(props);
+
+        this.changeRating = this.changeRating.bind(this);
+    }
+
+    changeRating(e) {
+
+        console.log(e);
+
+        for (let i = 0; i < data.length; i++) {
+
+            if (data[i].id === e.id) {
+                return data[i].stars = e.stars;
+            }
+        }
     }
 
     get sortedData() {
-    	let {searchQuery, sortQuery} = this.props;
 
-    	console.log(sortQuery)
+        let {sortQuery} = this.props;
 
         if (sortQuery === 'nosort') {
-        	return data;
+            return data;
         }
 
-        return data.sort(function(a, b) {
+        return [].concat(data).sort(function(a, b) {
 
             console.log(a[sortQuery], b[sortQuery], sortQuery);
 
-        	if (+a[sortQuery] > +b[sortQuery]) {
-        		return 1;
-        	}
+            if (+a[sortQuery] < +b[sortQuery]) {
+                return 1;
+            }
 
-        	if (+a[sortQuery] < +b[sortQuery]) {
-        		return -1;
-        	}
+            if (+a[sortQuery] > +b[sortQuery]) {
+                return -1;
+            }
 
-        	return 0;
+            return 0;
         });
     }
 
     get movies() {
 
-    	let {searchQuery, sortQuery} = this.props;
+        let {searchQuery} = this.props;
 
         return this.sortedData.map((item, index) => {
+
             if (item.title.toLowerCase().indexOf(searchQuery.toLowerCase()) === 0) {
-                return <Movie key={this.uid} details={item} />
+                return (
+                    <Movie
+                        key={item.id}
+                        details={item}
+                        onRatingChange={this.changeRating}
+                     />
+                )
             }
         })
     }
 
     render() {
+
+        console.log('movie-grid: render');
 
         let {searchQuery, sortQuery} = this.props;
 

@@ -4,7 +4,7 @@ import baseComponent from '../base-component.jsx';
 import './page-header.scss';
 import iconSearch from './img/magnify.svg';
 
-import ButtonGroup from '../button-group/button-group.jsx';
+import SortControl from '../sort-control/sort-control.jsx';
 
 export default class PageHeader extends baseComponent
 {
@@ -25,7 +25,7 @@ export default class PageHeader extends baseComponent
     }
 
     triggerSort(val) {
-    	this.emit('onSort', val);
+        this.emit('onSort', val);
     }
 
     shouldComponentUpdate() {
@@ -42,7 +42,7 @@ export default class PageHeader extends baseComponent
                             <img src={iconSearch} width="24" height="24" />
                         </a>
                     </div>
-                    <ButtonGroup onChange={this.triggerSort} />
+                    <SortControl onChange={this.triggerSort} />
                 </div>
             </header>
         )
