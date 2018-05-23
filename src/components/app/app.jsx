@@ -40,6 +40,7 @@ export default class App extends baseComponent
                     onSearch={this.search}
                     onSort={this.sort}
                 />
+
                 <MovieGrid
                     searchQuery={this.state.searchQuery}
                     sortQuery={this.state.sortQuery}

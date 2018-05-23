@@ -9,6 +9,7 @@ export default class Rating extends baseComponent
 {
     constructor(props) {
         super(props);
+
         this.changeRating = this.changeRating.bind(this);
     }
 
@@ -34,11 +35,9 @@ export default class Rating extends baseComponent
         this.emit('onChange', +e.currentTarget.getAttribute('data-current-value'));
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return this.props.value !== nextProps.value;
-    }
-
     render() {
+        //console.log('rating: render');
+
         return (
             <ul className="rating">{this.stars}</ul>
         )

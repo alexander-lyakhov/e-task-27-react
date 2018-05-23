@@ -11,30 +11,39 @@ export default class Movie extends baseComponent
     constructor(props) {
         super(props);
 
-        this.state = this.props.details;
+        this.likes = this.props.details.likes;
+        this.stars = this.props.details.stars;
 
         this.changeLikes = this.changeLikes.bind(this);
         this.changeRating = this.changeRating.bind(this);
     }
 
     changeLikes(delta) {
-        this.setState({likes: this.state.likes + delta});
+        this.emit('onLikeChange', {id: this.props.details.id, delta: delta});
     }
 
     changeRating(val) {
-        if (this.state.stars !== val) {
-            this.setState({stars: val});
-            this.emit('onRatingChange', {id: this.state.id, stars: val});
-        }
+        this.emit('onRatingChange', {id: this.props.details.id, stars: val});
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        //console.log(nextProps.details.likes, this.likes, nextProps.details.stars, this.stars);
+
+        let res = (nextProps.details.likes !== this.likes) || (nextProps.details.stars !== this.stars);
+
+        this.likes = nextProps.details.likes;
+        this.stars = nextProps.details.stars;
+
+        return res;
     }
 
     render() {
-        let {posterUrl: image, title, stars, likes} = this.props.details;
+        let {id, posterUrl: image, title, stars, likes} = this.props.details;
 
-        console.log('movie: render');
+        //console.log('movie: render');
 
         return (
-            <div className='movie-placeholder' key={this.uid}>
+            <div className='movie-placeholder' key={id}>
                 <div className='movie-card'>
 
                     <div className="thumbnail">

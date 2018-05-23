@@ -11,33 +11,53 @@ export default class MovieGrid extends baseComponent
     constructor(props) {
         super(props);
 
+        this.state = {
+            data: data
+        };
+
+        this.changeLikes = this.changeLikes.bind(this);
         this.changeRating = this.changeRating.bind(this);
     }
 
-    changeRating(e) {
-
-        console.log(e);
+    changeLikes(e) {
+        //console.log('changeLikes', e);
 
         for (let i = 0; i < data.length; i++) {
 
             if (data[i].id === e.id) {
-                return data[i].stars = e.stars;
+                data[i].likes += e.delta;
+                break;
             }
         }
+
+        this.setState({data: data});
+    }
+
+    changeRating(e) {
+
+        //console.log('changeRating', e);
+
+        for (let i = 0; i < data.length; i++) {
+
+            if (data[i].id === e.id) {
+                data[i].stars = e.stars;
+                break;
+            }
+        }
+
+        this.setState({data: data});
     }
 
     get sortedData() {
 
         let {sortQuery} = this.props;
+        let {data: arr} = this.state;
 
         if (sortQuery === 'nosort') {
-            return data;
+            return arr;
         }
 
-        return [].concat(data).sort(function(a, b) {
-
-            console.log(a[sortQuery], b[sortQuery], sortQuery);
-
+        return [].concat(arr).sort(function(a, b) {
             if (+a[sortQuery] < +b[sortQuery]) {
                 return 1;
             }
@@ -61,6 +81,7 @@ export default class MovieGrid extends baseComponent
                     <Movie
                         key={item.id}
                         details={item}
+                        onLikeChange={this.changeLikes}
                         onRatingChange={this.changeRating}
                      />
                 )
@@ -70,7 +91,7 @@ export default class MovieGrid extends baseComponent
 
     render() {
 
-        console.log('movie-grid: render');
+        //console.log('movie-grid: render');
 
         let {searchQuery, sortQuery} = this.props;
 
