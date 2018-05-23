@@ -1,12 +1,12 @@
 import React from 'react';
 import baseComponent from '../base-component.jsx';
 
-import './page-header.scss';
+import './header.scss';
 import iconSearch from './img/magnify.svg';
 
 import SortControl from '../sort-control/sort-control.jsx';
 
-export default class PageHeader extends baseComponent
+export default class Header extends baseComponent
 {
     constructor(props) {
         super(props);
