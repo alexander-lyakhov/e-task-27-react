@@ -1,41 +1,96 @@
-$selectorColor: #404040;
-
-.sort-control {
-    background: #606060;
-    height: 36px;
-    display: flex;
-    float: left;
-    margin: 0 0 0 8px;
+.landing-page {
+    color: #000;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100vh;
+	z-index: 1;
+	display: none;
 }
 
-.sort-control__item {
-    color: #eee;
-    width: 84px;
-    height: 36px;
-    line-height: 36;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
+.landing-page.show {
+	display: block;
+}
 
-    &.active {
-        color: #000;
-        background: #eee;
-        border-bottom: 3px solid $selectorColor;
+.overlay {
+	background: rgba(0, 0, 0, 0.5);
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	left: 0;
+	top: 0;
+}
 
-        &:after {
-            content: '';
-            background: $selectorColor;
-            display: block;
-            width: 8px;
-            height: 8px;
-            position: absolute;
-            transform: rotate(45deg);
-            left: 50%;
-            bottom: 0;
-            margin: 0 0 -4px -4px;
-        }
-    }
+.landing-page__container {
+	width: 720px;
+	min-height: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	overflow: hidden;
+}
+
+.landing-page__content {
+    background: #fff;
+    /*box-shadow: -2px 0 8px rgba(0, 0, 0, 0.5);*/
+    width: 710px;
+    height: 100vh;
+	padding: 48px 16px 16px 16px;
+	position: relative;
+	left: 0%;
+	transition: all 0.5s;
+}
+
+.landing-page__content.show {
+	left: 10px;
+	transition: all 0.5s;
+}
+
+.landing-page__header {
+    background: #404040;
+	width: 100%;
+	height: 32px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.btn-close {
+	cursor: pointer;
+	margin: 4px;
+	float: right;
+}
+
+.btn-close path {
+	fill: #fff;
+}
+
+.landing-page img {
+    border: 2px solid #000;
+	float: left;
+	margin: 0 16px 0 0;
+	padding: 4px;
+}
+
+h2 {
+	font: 24px Georgia;
+	text-align: center;
+	margin: 0 0 16px 0;
+}
+
+.row {
+	margin: 8px 0;
+}
+
+.caption {
+	font-weight: bold;
+	display: block;
+}
+
+.value {
+    text-indent: 32px;
+    text-align: justify;
+	line-height: 24px;
+	display: block;
 }

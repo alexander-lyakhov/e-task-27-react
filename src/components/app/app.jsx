@@ -4,7 +4,7 @@ import './app.scss';
 
 import Header from '../header/header.jsx';
 import MovieGrid from '../movie-grid/movie-grid.jsx';
-import MovieGrid from '../landing-page/landing-page.jsx';
+import LandingPage from '../landing-page/landing-page.jsx';
 
 import '../../assets/react-logo.png';
 
@@ -15,7 +15,8 @@ export default class App extends baseComponent
 
         this.state = {
             searchQuery: '',
-            sortQuery: 'nosort'
+            sortQuery: 'nosort',
+            isLandingOpen: false
         };
 
         this.search = this.search.bind(this);
@@ -36,7 +37,8 @@ export default class App extends baseComponent
     }
 
     showMovieDetails(e) {
-        console.log('showMovieDetails', e);
+        //console.log('showMovieDetails', e);
+        this.setState({isLandingOpen: true});
     }
 
     render() {
@@ -52,6 +54,8 @@ export default class App extends baseComponent
                     sortQuery={this.state.sortQuery}
                     onMovieTitleClick={this.showMovieDetails}
                 />
+
+                <LandingPage show={this.state.isLandingOpen} />
             </div>
         )
     }
