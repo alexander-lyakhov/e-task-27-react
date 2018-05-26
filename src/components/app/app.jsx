@@ -16,12 +16,15 @@ export default class App extends baseComponent
         this.state = {
             searchQuery: '',
             sortQuery: 'nosort',
-            isLandingOpen: false
+            isLandingOpen: false,
+            landingPageDetails: {}
         };
 
         this.search = this.search.bind(this);
         this.sort = this.sort.bind(this);
-        this.showMovieDetails = this.showMovieDetails.bind(this);
+
+        this.showLandingPage = this.showLandingPage.bind(this);
+        this.hideLandingPage = this.hideLandingPage.bind(this);
     }
 
     search(query) {
@@ -36,9 +39,15 @@ export default class App extends baseComponent
         }
     }
 
-    showMovieDetails(e) {
-        //console.log('showMovieDetails', e);
-        this.setState({isLandingOpen: true});
+    showLandingPage(data) {
+        this.setState({
+            isLandingOpen: true,
+            landingPageDetails: data
+        });
+    }
+
+    hideLandingPage() {
+        this.setState({isLandingOpen: false});
     }
 
     render() {
@@ -52,10 +61,14 @@ export default class App extends baseComponent
                 <MovieGrid
                     searchQuery={this.state.searchQuery}
                     sortQuery={this.state.sortQuery}
-                    onMovieTitleClick={this.showMovieDetails}
+                    onMovieTitleClick={this.showLandingPage}
                 />
 
-                <LandingPage show={this.state.isLandingOpen} />
+                <LandingPage
+                    isOpen={this.state.isLandingOpen}
+                    details={this.state.landingPageDetails}
+                    onClose={this.hideLandingPage}
+                />
             </div>
         )
     }
