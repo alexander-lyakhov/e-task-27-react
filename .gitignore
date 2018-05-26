@@ -1,2 +1,4 @@
 ﻿*.map
 dist/
+build/
+public/

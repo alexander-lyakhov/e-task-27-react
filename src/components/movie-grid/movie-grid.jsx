@@ -17,6 +17,7 @@ export default class MovieGrid extends baseComponent
 
         this.changeLikes = this.changeLikes.bind(this);
         this.changeRating = this.changeRating.bind(this);
+        this.movieTitleClick = this.movieTitleClick.bind(this);
     }
 
     changeLikes(e) {
@@ -70,6 +71,10 @@ export default class MovieGrid extends baseComponent
         });
     }
 
+    movieTitleClick(e) {
+        this.emit('onMovieTitleClick', e);
+    }
+
     get movies() {
 
         let {searchQuery} = this.props;
@@ -83,6 +88,7 @@ export default class MovieGrid extends baseComponent
                         details={item}
                         onLikeChange={this.changeLikes}
                         onRatingChange={this.changeRating}
+                        onMovieTitleClick={this.movieTitleClick}
                      />
                 )
             }

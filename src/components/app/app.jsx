@@ -4,6 +4,7 @@ import './app.scss';
 
 import Header from '../header/header.jsx';
 import MovieGrid from '../movie-grid/movie-grid.jsx';
+import MovieGrid from '../landing-page/landing-page.jsx';
 
 import '../../assets/react-logo.png';
 
@@ -19,6 +20,7 @@ export default class App extends baseComponent
 
         this.search = this.search.bind(this);
         this.sort = this.sort.bind(this);
+        this.showMovieDetails = this.showMovieDetails.bind(this);
     }
 
     search(query) {
@@ -33,6 +35,10 @@ export default class App extends baseComponent
         }
     }
 
+    showMovieDetails(e) {
+        console.log('showMovieDetails', e);
+    }
+
     render() {
         return (
             <div className="main">
@@ -44,6 +50,7 @@ export default class App extends baseComponent
                 <MovieGrid
                     searchQuery={this.state.searchQuery}
                     sortQuery={this.state.sortQuery}
+                    onMovieTitleClick={this.showMovieDetails}
                 />
             </div>
         )

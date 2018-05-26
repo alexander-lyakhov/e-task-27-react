@@ -16,6 +16,7 @@ export default class Movie extends baseComponent
 
         this.changeLikes = this.changeLikes.bind(this);
         this.changeRating = this.changeRating.bind(this);
+        this.movieTitleClick = this.movieTitleClick.bind(this);
     }
 
     changeLikes(delta) {
@@ -37,6 +38,10 @@ export default class Movie extends baseComponent
         return res;
     }
 
+    movieTitleClick() {
+        this.emit('onMovieTitleClick', this.props.details);
+    }
+
     render() {
         let {id, posterUrl: image, title, stars, likes} = this.props.details;
 
@@ -51,7 +56,7 @@ export default class Movie extends baseComponent
                     </div>
 
                     <div className="info">
-                        <h2>{title}</h2>
+                        <h2 onClick={this.movieTitleClick}>{title}</h2>
 
                         <div className="status">
                             <Likes value={likes} onChange={this.changeLikes}/>
