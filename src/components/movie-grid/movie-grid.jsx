@@ -8,101 +8,110 @@ import Movie from '../movie/movie.jsx';
 
 export default class MovieGrid extends baseComponent
 {
-    constructor(props) {
-        super(props);
+	constructor(props) {
+		super(props);
 
-        this.state = {
-            data: data
-        };
+		this.state = {
+			data: data
+		};
 
-        this.changeLikes = this.changeLikes.bind(this);
-        this.changeRating = this.changeRating.bind(this);
-        this.movieTitleClick = this.movieTitleClick.bind(this);
-    }
+		this.changeLikes = this.changeLikes.bind(this);
+		this.changeRating = this.changeRating.bind(this);
+		this.movieTitleClick = this.movieTitleClick.bind(this);
+	}
 
-    changeLikes(e) {
-        //console.log('changeLikes', e);
+	changeLikes(e) {
+		//console.log('changeLikes', e);
 
-        for (let i = 0; i < data.length; i++) {
+		for (let i = 0; i < data.length; i++) {
 
-            if (data[i].id === e.id) {
-                data[i].likes += e.delta;
-                break;
-            }
-        }
+			if (data[i].id === e.id) {
+				data[i].likes += e.delta;
+				break;
+			}
+		}
 
-        this.setState({data: data});
-    }
+		this.setState({data: data});
+	}
 
-    changeRating(e) {
+	changeRating(e) {
 
-        //console.log('changeRating', e);
+		//console.log('changeRating', e);
 
-        for (let i = 0; i < data.length; i++) {
+		for (let i = 0; i < data.length; i++) {
 
-            if (data[i].id === e.id) {
-                data[i].stars = e.stars;
-                break;
-            }
-        }
+			if (data[i].id === e.id) {
+				data[i].stars = e.stars;
+				break;
+			}
+		}
 
-        this.setState({data: data});
-    }
+		this.setState({data: data});
+	}
 
-    get sortedData() {
+	get sortedData() {
 
-        let {sortQuery} = this.props;
-        let {data: arr} = this.state;
+		let {sortQuery} = this.props;
+		let {data: arr} = this.state;
 
-        if (sortQuery === 'nosort') {
-            return arr;
-        }
+		if (sortQuery === 'nosort') {
+			return arr;
+		}
 
-        return [].concat(arr).sort(function(a, b) {
-            if (+a[sortQuery] < +b[sortQuery]) {
-                return 1;
-            }
+		return [].concat(arr).sort(function(a, b) {
+			if (+a[sortQuery] < +b[sortQuery]) {
+				return 1;
+			}
 
-            if (+a[sortQuery] > +b[sortQuery]) {
-                return -1;
-            }
+			if (+a[sortQuery] > +b[sortQuery]) {
+				return -1;
+			}
 
-            return 0;
-        });
-    }
+			return 0;
+		});
+	}
 
-    movieTitleClick(e) {
-        this.emit('onMovieTitleClick', e);
-    }
+	movieTitleClick(e) {
+		this.emit('onMovieTitleClick', e);
+	}
 
-    get movies() {
+	get movies() {
 
-        let {searchQuery} = this.props;
+		let {searchQuery} = this.props;
 
-        return this.sortedData.map((item, index) => {
+		let arr = this.sortedData.filter((item, index) => {
+			return item.title.toLowerCase().indexOf(searchQuery.toLowerCase()) === 0;
+		});
 
-            if (item.title.toLowerCase().indexOf(searchQuery.toLowerCase()) === 0) {
-                return (
-                    <Movie
-                        key={item.id}
-                        details={item}
-                        onLikeChange={this.changeLikes}
-                        onRatingChange={this.changeRating}
-                        onMovieTitleClick={this.movieTitleClick}
-                     />
-                )
-            }
-        })
-    }
+		if (arr.length) {
 
-    render() {
+			return arr.map((item, index) => {
+				return (
+					<Movie
+						key={item.id}
+						details={item}
+						onLikeChange={this.changeLikes}
+						onRatingChange={this.changeRating}
+						onMovieTitleClick={this.movieTitleClick}
+					 />
+				)
+			})
+		}
+		else {
+			return (
+				<div className="no-resalt">Nothing found</div>
+			);
+		}
+	}
 
-        //console.log('movie-grid: render');
+	render() {
 
-        let {searchQuery, sortQuery} = this.props;
+		//console.log('movie-grid: render');
 
-        return (
-            <div className='movies'> {this.movies} </div>
-        )
-    }
+		let {searchQuery, sortQuery} = this.props;
+
+		return (
+			<div className='movies'> {this.movies} </div>
+		)
+	}
 }
