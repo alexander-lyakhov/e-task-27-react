@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {PropTypes as pt} from 'react';
 import baseComponent from '../base-component.jsx';
 
 import './movie-grid.scss';
-import data from './data.js';
+import data from './data.json';
 
 import Movie from '../movie/movie.jsx';
 
-export default class MovieGrid extends baseComponent
+class MovieGrid extends baseComponent
 {
 	constructor(props) {
 		super(props);
@@ -108,10 +108,15 @@ export default class MovieGrid extends baseComponent
 
 		//console.log('movie-grid: render');
 
-		let {searchQuery, sortQuery} = this.props;
-
 		return (
 			<div className='movies'> {this.movies} </div>
 		)
 	}
 }
+
+MovieGrid.propTypes = {
+	searchQuery: pt.string.isRequired,
+	sortQuery: pt.string.isRequired
+};
+
+export default MovieGrid;
