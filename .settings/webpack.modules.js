@@ -74,7 +74,7 @@ module.exports = function(projectPath) {
                 options: {
                     name: '[name].[ext]',
                     outputPath: 'assets/images',
-                    publicPath: 'assets/images' // prefix for compiled css
+                    publicPath: 'dist/assets/images' // prefix for compiled css
                 }
             },
 

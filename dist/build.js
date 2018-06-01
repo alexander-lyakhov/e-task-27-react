@@ -11620,6 +11620,27 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
      */
     componentWillUnmount: 'DEFINE_MANY',
 
+    /**
+     * Replacement for (deprecated) `componentWillMount`.
+     *
+     * @optional
+     */
+    UNSAFE_componentWillMount: 'DEFINE_MANY',
+
+    /**
+     * Replacement for (deprecated) `componentWillReceiveProps`.
+     *
+     * @optional
+     */
+    UNSAFE_componentWillReceiveProps: 'DEFINE_MANY',
+
+    /**
+     * Replacement for (deprecated) `componentWillUpdate`.
+     *
+     * @optional
+     */
+    UNSAFE_componentWillUpdate: 'DEFINE_MANY',
+
     // ==== Advanced methods ====
 
     /**
@@ -11633,6 +11654,23 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
      * @overridable
      */
     updateComponent: 'OVERRIDE_BASE'
+  };
+
+  /**
+   * Similar to ReactClassInterface but for static methods.
+   */
+  var ReactClassStaticInterface = {
+    /**
+     * This method is invoked after a component is instantiated and when it
+     * receives new props. Return an object to update state in response to
+     * prop changes. Return null to indicate no change to state.
+     *
+     * If an object is returned, its keys will be merged into the existing state.
+     *
+     * @return {object || null}
+     * @optional
+     */
+    getDerivedStateFromProps: 'DEFINE_MANY_MERGED'
   };
 
   /**
@@ -11869,6 +11907,7 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
     if (!statics) {
       return;
     }
+
     for (var name in statics) {
       var property = statics[name];
       if (!statics.hasOwnProperty(name)) {
@@ -11885,14 +11924,25 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
         name
       );
 
-      var isInherited = name in Constructor;
-      _invariant(
-        !isInherited,
-        'ReactClass: You are attempting to define ' +
-          '`%s` on your component more than once. This conflict may be ' +
-          'due to a mixin.',
-        name
-      );
+      var isAlreadyDefined = name in Constructor;
+      if (isAlreadyDefined) {
+        var specPolicy = ReactClassStaticInterface.hasOwnProperty(name)
+          ? ReactClassStaticInterface[name]
+          : null;
+
+        _invariant(
+          specPolicy === 'DEFINE_MANY_MERGED',
+          'ReactClass: You are attempting to define ' +
+            '`%s` on your component more than once. This conflict may be ' +
+            'due to a mixin.',
+          name
+        );
+
+        Constructor[name] = createMergedResultFunction(Constructor[name], property);
+
+        return;
+      }
+
       Constructor[name] = property;
     }
   }
@@ -12200,6 +12250,12 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
         !Constructor.prototype.componentWillRecieveProps,
         '%s has a method called ' +
           'componentWillRecieveProps(). Did you mean componentWillReceiveProps()?',
+        spec.displayName || 'A component'
+      );
+      warning(
+        !Constructor.prototype.UNSAFE_componentWillRecieveProps,
+        '%s has a method called UNSAFE_componentWillRecieveProps(). ' +
+          'Did you mean UNSAFE_componentWillReceiveProps()?',
         spec.displayName || 'A component'
       );
     }
@@ -22513,7 +22569,7 @@ exports.default = Header;
 /* 192 */
 /***/ (function(module, exports) {
 
-module.exports = "assets/images/magnify.svg";
+module.exports = "dist/assets/images/magnify.svg";
 
 /***/ }),
 /* 193 */
@@ -23046,13 +23102,13 @@ exports.default = Likes;
 /* 202 */
 /***/ (function(module, exports) {
 
-module.exports = "assets/images/icon-like.svg";
+module.exports = "dist/assets/images/icon-like.svg";
 
 /***/ }),
 /* 203 */
 /***/ (function(module, exports) {
 
-module.exports = "assets/images/icon-dislike.svg";
+module.exports = "dist/assets/images/icon-dislike.svg";
 
 /***/ }),
 /* 204 */
@@ -23064,13 +23120,13 @@ module.exports = "assets/images/icon-dislike.svg";
 /* 205 */
 /***/ (function(module, exports) {
 
-module.exports = "assets/images/icon-star-outline.svg";
+module.exports = "dist/assets/images/icon-star-outline.svg";
 
 /***/ }),
 /* 206 */
 /***/ (function(module, exports) {
 
-module.exports = "assets/images/icon-star-solid.svg";
+module.exports = "dist/assets/images/icon-star-solid.svg";
 
 /***/ }),
 /* 207 */
@@ -23239,19 +23295,19 @@ exports.default = LandingPage;
 /* 209 */
 /***/ (function(module, exports) {
 
-module.exports = "assets/images/icon-close.svg";
+module.exports = "dist/assets/images/icon-close.svg";
 
 /***/ }),
 /* 210 */
 /***/ (function(module, exports) {
 
-module.exports = "assets/images/icon-heart.svg";
+module.exports = "dist/assets/images/icon-heart.svg";
 
 /***/ }),
 /* 211 */
 /***/ (function(module, exports) {
 
-module.exports = "assets/images/react-logo.png";
+module.exports = "dist/assets/images/react-logo.png";
 
 /***/ })
 /******/ ]);
