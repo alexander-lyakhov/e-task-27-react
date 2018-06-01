@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {PropTypes as pt} from 'react';
 import baseComponent from '../base-component.jsx';
 
 import './rating.scss';
 import iconStarOutline from './img/icon-star-outline.svg';
 import iconStarSolid from './img/icon-star-solid.svg';
 
-export default class Rating extends baseComponent
+class Rating extends baseComponent
 {
     constructor(props) {
         super(props);
@@ -42,4 +42,10 @@ export default class Rating extends baseComponent
             <ul className="rating">{this.stars}</ul>
         )
     }
-}
+};
+
+Rating.propTypes = {
+	value: pt.number.isRequired
+};
+
+export default Rating;

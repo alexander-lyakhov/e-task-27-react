@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes as pt} from 'react';
 import baseComponent from '../base-component.jsx';
 
 import './movie.scss';
@@ -6,7 +6,7 @@ import './movie.scss';
 import Likes from '../likes/likes.jsx';
 import Rating from '../rating/rating.jsx';
 
-export default class Movie extends baseComponent
+class Movie extends baseComponent
 {
     constructor(props) {
         super(props);
@@ -28,7 +28,6 @@ export default class Movie extends baseComponent
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        //console.log(nextProps.details.likes, this.likes, nextProps.details.stars, this.stars);
 
         let res = (nextProps.details.likes !== this.likes) || (nextProps.details.stars !== this.stars);
 
@@ -68,3 +67,9 @@ export default class Movie extends baseComponent
         )
     }
 }
+
+Movie.propTypes = {
+	details: pt.object.isRequired
+}
+
+export default Movie;

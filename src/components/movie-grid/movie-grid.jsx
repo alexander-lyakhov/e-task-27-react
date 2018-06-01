@@ -21,7 +21,6 @@ class MovieGrid extends baseComponent
 	}
 
 	changeLikes(e) {
-		//console.log('changeLikes', e);
 
 		for (let i = 0; i < data.length; i++) {
 
@@ -35,8 +34,6 @@ class MovieGrid extends baseComponent
 	}
 
 	changeRating(e) {
-
-		//console.log('changeRating', e);
 
 		for (let i = 0; i < data.length; i++) {
 

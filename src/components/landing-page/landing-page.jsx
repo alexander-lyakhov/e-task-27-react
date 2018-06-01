@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes as pt} from 'react';
 
 import './landing-page.scss';
 import iconClose from './img/icon-close.svg';
@@ -6,7 +6,7 @@ import iconHeart from './img/icon-heart.svg';
 
 import Rating from '../rating/rating.jsx';
 
-export default function(props)
+function LandingPage(props)
 {
     let {isOpen} = props;
     let {title='', posterUrl='', stars=0, likes=0, genres=[], actors=[], director='', description=''} = props.details;
@@ -15,7 +15,7 @@ export default function(props)
         <div className={'landing-page' + (isOpen ? ' show':'')}>
             <div className="landing-page__content">
                 <div className="header">
-                    <img src={iconClose} className="btn-close" width="24" height="24" onClick={props.onClose}/>
+                    <img src={iconClose} className="btn-close" width="24" height="24" onClick={props.onClose} />
                 </div>
 
                 <img className="poster" src={posterUrl} width="320" />
@@ -55,3 +55,11 @@ export default function(props)
         </div>
     )
 }
+
+LandingPage.propTypes = {
+    isOpen: pt.bool.isRequired,
+	details: pt.object.isRequired,
+	onClose: pt.func.isRequired
+}
+
+export default LandingPage;

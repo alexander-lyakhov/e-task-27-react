@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes as pt} from 'react';
 import baseComponent from '../base-component.jsx';
 
 import './likes.scss';
@@ -6,7 +6,7 @@ import './likes.scss';
 import iconLike from './img/icon-like.svg';
 import iconDislike from './img/icon-dislike.svg';
 
-export default class Likes extends baseComponent
+class Likes extends baseComponent
 {
     constructor(props) {
         super(props);
@@ -35,3 +35,9 @@ export default class Likes extends baseComponent
         )
     }
 }
+
+Likes.propTypes = {
+	value: pt.number.isRequired
+}
+
+export default Likes;
