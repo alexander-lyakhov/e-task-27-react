@@ -9,16 +9,13 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var UglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin')
 var path = require('path');
 
-var projectName = 'e-task-27-react';
-
 var project = {
 
-	name: projectName,
-
-	path: path.resolve(__dirname, projectName),
-
+	name: 'e-task-27-react',
 	output: 'dist'
 };
+
+project.path = path.resolve(__dirname, project.name);
 
 module.exports = {
 
