@@ -10,7 +10,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 //===========================================
 // export webpack 'module (loaders)' section
 //===========================================
-module.exports = function(projectPath) {
+module.exports = function(project) {
 
 	return {
 
@@ -34,7 +34,7 @@ module.exports = function(projectPath) {
                         {loader: 'sass-loader', options: {
                             data: '@import "variables";',
                             includePaths: [
-                                path.resolve(projectPath, 'src/styles')
+                                path.resolve(project.path, 'src/styles')
                             ]
                         }}
                     ]
@@ -74,7 +74,7 @@ module.exports = function(projectPath) {
                 options: {
                     name: '[name].[ext]',
                     outputPath: 'assets/images',
-                    publicPath: 'dist/assets/images' // prefix for compiled css
+                    publicPath: project.output + '/assets/images' // prefix for compiled css
                 }
             },
 

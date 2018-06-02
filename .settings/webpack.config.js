@@ -10,11 +10,19 @@ var UglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin')
 var path = require('path');
 
 var projectName = 'e-task-27-react';
-var projectPath = path.resolve(__dirname, projectName);
+
+var project = {
+
+	name: projectName,
+
+	path: path.resolve(__dirname, projectName),
+
+	output: 'dist'
+};
 
 module.exports = {
 
-    context: projectPath,
+    context: project.path,
 
     //=======================================================================================================
     //  For cases when we should copy 'index.html' file into 'dist' directory
@@ -27,11 +35,11 @@ module.exports = {
     */
 
     entry: {
-        app: './src/index.js'
+        app: './src/main.js'
     },
 
     output: {
-        path: path.resolve(projectPath, 'dist'),
+        path: path.resolve(project.path, project.output),
         filename: 'build.js'
     },
 
@@ -49,10 +57,10 @@ module.exports = {
     //  Set server path to project folder
     //=======================================================================================================
     devServer: {
-        contentBase: projectPath
+        contentBase: project.path
     },
 
-    module: modules(projectPath),
+    module: modules(project),
 
     plugins: [
         new webpack.NoEmitOnErrorsPlugin(),
