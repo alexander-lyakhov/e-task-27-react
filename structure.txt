@@ -1,0 +1,12 @@
+App
+ÃÄÄ Header
+³   ³
+³   ÀÄÄ SortControl
+³
+ÃÄÄ MovieGrid
+³   ³
+³   ÀÄÄ Movie
+³       ÃÄÄ Likes
+³       ÀÄÄ Rating
+³
+ÀÄÄ LandingPage
